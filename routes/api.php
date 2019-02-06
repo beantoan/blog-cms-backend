@@ -28,3 +28,9 @@ Route::group([
     Route::get('me', 'Auth\AuthController@me');
 
 });
+
+Route::middleware('auth:api')->group(function () {
+    Route::resource('posts', 'PostController')->except([
+        'create', 'edit'
+    ]);
+});

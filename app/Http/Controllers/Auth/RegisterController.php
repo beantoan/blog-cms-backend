@@ -11,17 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    private $ERROR_INVALID_DATA = 100;
-    private $ERROR_SAVE_DATA = 101;
-
-    /**
-     * Create a new controller instance.
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    private $ERROR_INVALID_USER = 100;
+    private $ERROR_SAVE_USER = 101;
 
     /**
      * Handle a registration request for the application.
@@ -39,8 +30,8 @@ class RegisterController extends Controller
         $apiResponse = new ApiResponse();
 
         if ($validator->fails()) {
-            $apiResponse->setCode($this->ERROR_INVALID_DATA);
-            $apiResponse->setMsg(__('messages.register_invalid_data_error'));
+            $apiResponse->setCode($this->ERROR_INVALID_USER);
+            $apiResponse->setMsg(__('messages.register_invalid_user_error'));
             $apiResponse->setData($validator->errors());
 
             return respondApiError($apiResponse);
@@ -48,11 +39,11 @@ class RegisterController extends Controller
             $user = $this->create($data);
 
             if ($user) {
-                $apiResponse->setMsg(__('messages.register_save_data_success'));
+                $apiResponse->setMsg(__('messages.register_save_user_success'));
                 return respondApiSuccess($apiResponse);
             } else {
-                $apiResponse->setCode($this->ERROR_SAVE_DATA);
-                $apiResponse->setMsg(__('messages.register_save_data_error'));
+                $apiResponse->setCode($this->ERROR_SAVE_USER);
+                $apiResponse->setMsg(__('messages.register_save_user_error'));
                 return respondApiError($apiResponse);
             }
         }

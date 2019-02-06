@@ -7,6 +7,7 @@
  */
 
 use App\Http\Api\ApiResponse;
+use Illuminate\Http\Response;
 
 if (!function_exists('createJwtResponse')) {
     function createJwtResponse($token)
@@ -29,20 +30,20 @@ if (!function_exists('respondWithToken')) {
 if (!function_exists('respondApiSuccess')) {
     function respondApiSuccess(ApiResponse $apiResponse)
     {
-        return response()->json($apiResponse->toArray(), 200);
+        return response()->json($apiResponse->toArray(), Response::HTTP_OK);
     }
 }
 
 if (!function_exists('respondApiError')) {
     function respondApiError(ApiResponse $apiResponse)
     {
-        return response()->json($apiResponse->toArray(), 400);
+        return response()->json($apiResponse->toArray(), Response::HTTP_BAD_REQUEST);
     }
 }
 
 if (!function_exists('respondUnauthorized')) {
     function respondUnauthorized(ApiResponse $apiResponse)
     {
-        return response()->json($apiResponse->toArray(), 401);
+        return response()->json($apiResponse->toArray(), Response::HTTP_UNAUTHORIZED);
     }
 }
