@@ -11,6 +11,11 @@ return [
     'logout_success' => 'You have logged out successfully.',
 
     'invalid_post_error' => 'Please provide valid data.',
-    'save_post_error' => 'Error when saving post.',
-    'save_post_success' => 'Post is saved successfully.',
+    'save_post_error' => 'Error when saving the post ":title".',
+    'save_post_success' => 'Post ":title" is saved successfully.',
+
+    'delete_post_error' => 'Error when deleting the post ":title".',
+    'delete_post_success' => 'Post ":title" is deleted successfully.',
+
+    'post_not_found_error' => 'Post was not found.',
 ];
